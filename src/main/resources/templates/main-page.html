@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <style>
+
+input[type=submit] {
+  width: 20%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<center>
+    <h1 > <b>COVID VACCINATION STATUS TRACKER</b></h1><br>
+    <h3>Get vaccinated And Protect Yourself From Covid 19</h3>
+
+<br><br><br><br>
+    Login here<br><br>
+<div>
+<form th:action="@{/showMyLoginPage}">
+
+    <input type="submit" value="Login" />
+
+</form>
+</div>
+</center>
+</body>
+</html>

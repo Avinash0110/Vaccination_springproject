@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <title>covid Home Page</title>
+</head>
+
+<body>
+<center><h2 style="color:green">Welcome to covid vaccination status Page</h2></center>
+
+
+<hr>
+
+<p style="color:brown">
+    User details are displayed below
+</p>
+
+<hr>
+
+<!-- display user name and role -->
+
+<div>
+    <b style="color:grey"> User Name:</b> <span sec:authentication="name"></span>
+    <br><br>
+
+    <br><br>
+    <center>
+    <!-- Check for login error -->
+    <div th:if="${session.user}" >
+        <table style="width:100%">
+            <tr>
+                <th>First Name :</th>
+                <td><p style="color:blue" th:text="${session.user.firstName}"/></td>
+            </tr>
+            <tr>
+                <th>Last Name :</th>
+                <td><p style="color:blue" th:text="${session.user.lastName}"/></td>
+             </tr>
+            <tr>
+                <th>Email :</th>
+                <td><p style="color:blue" th:text="${session.user.email}"/></td>
+            </tr>
+            <tr>
+                <th>Gender :</th>
+                <td><p style="color:blue" th:text="${session.user.gender}"/></td>
+            </tr>
+            <tr>
+                <th>Age :</th>
+                <td><p style="color:blue" th:text="${session.user.age}"/></td>
+            </tr>
+            <tr>
+                <th>Adhar Card number :</th>
+                <td><p style="color:blue" th:text="${session.user.adharCard}"/></td>
+            </tr>
+            <tr>
+                <th>Vaccination status :</th>
+                <td><p style="color:blue" th:text="${session.user.vaccinationStatus}"/></td>
+            </tr>
+        </table>
+
+    </div>
+
+    </center>
+
+</div>
+
+<div sec:authorize="hasRole('DOCTOR')">
+
+    <!-- Add a link to point to /doctors ... this is for the doctors -->
+
+    <p>
+       <!-- <a th:href="@{/doctors}">ViewUsers</a>-->
+    <form action="/doctors">
+       <input type="submit" value="VIEW USERS" />
+    </form>
+
+    </p>
+
+</div>
+
+<div sec:authorize="hasRole('ADMIN')">
+
+    <!-- Add a link to point to /systems ... this is for the admins -->
+
+    <p>
+        <!-- <a th:href="@{/doctors}">ViewUsers</a>-->
+    <form action="/admin">
+        <input type="submit" value="VIEW DOCTORS AND USERS" />
+    </form>
+
+    </p>
+
+</div>
+
+<hr>
+
+<!-- Add a logout button -->
+<center>
+<form th:action="@{/logout}"
+      method="POST">
+
+    <input type="submit" value="Logout" />
+
+</form>
+</center>
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
